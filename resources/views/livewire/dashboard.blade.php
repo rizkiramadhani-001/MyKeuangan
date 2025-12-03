@@ -314,7 +314,7 @@
                                         <h5 class="text-lg font-extrabold text-white truncate drop-shadow-md">
                                             {{ $item->nama }}</h5>
                                         <div class="flex justify-between items-end mt-1">
-                                            <p class="text-pink-300 text-xs font-bold text-wrap">{{ $item->deskripsi }}</p>
+                                            <p class="text-pink-300 text-xs font-bold text-wrap h-4">{{ $item->deskripsi }}</p>
                                             <p class="text-white text-sm font-bold tabular-nums">
                                                 {{ number_format($item->harga) }}</p>
                                         </div>
