@@ -14,6 +14,8 @@ class Profile extends Component
 
     public string $email = '';
 
+
+    public int $dana = 0;
     /**
      * Mount the component.
      */
@@ -21,6 +23,7 @@ class Profile extends Component
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
+        $this->dana = Auth::user()->dana;
     }
 
     /**
@@ -41,6 +44,7 @@ class Profile extends Component
                 'max:255',
                 Rule::unique(User::class)->ignore($user->id),
             ],
+            'dana' => ['required', 'numeric']
         ]);
 
         $user->fill($validated);

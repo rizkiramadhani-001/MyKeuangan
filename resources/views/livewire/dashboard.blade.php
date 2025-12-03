@@ -310,14 +310,12 @@
                                         <span
                                             class="inline-block px-2 py-1 text-[10px] font-bold tracking-wider text-white uppercase bg-white/20 backdrop-blur-md rounded-lg border border-white/10">Wishlist</span>
                                     </div>
-                                    <div class="absolute bottom-3 left-3 right-3">
-                                        <h5 class="text-lg font-extrabold text-white truncate drop-shadow-md">
-                                            {{ $item->nama }}</h5>
-                                        <div class="flex justify-between items-end mt-1">
-                                            <p class="text-pink-300 text-xs font-bold text-wrap h-4">{{ $item->deskripsi }}</p>
-                                            <p class="text-white text-sm font-bold tabular-nums">
-                                                {{ number_format($item->harga) }}</p>
-                                        </div>
+                                                         <div class="absolute bottom-3 left-3">
+                                        <p class="text-white font-bold text-sm shadow-sm">{{ $item->nama }}</p>
+                                        <p class="text-white/80 text-[10px]  font-medium flex items-center gap-1">
+                                            <span
+                                                class="w-1.5 h-1.5 bg-pink-500 rounded-full animate-pulse"></span>{{ $item->deskripsi }}
+                                        </p>
                                     </div>
                                 </div>
 
@@ -329,7 +327,7 @@
                                             style="width: {{ $item->harga > 0 ? ($item->transactions->sum('amount')/$item->harga*100) : 0 }}%;">
                                         </div>
                                     </div>
-                                    <p class="text-green-500 m-4"> Terkumpul: Rp
+                                    <p class="font-bold text-black dark:text-green-500 m-4"> Terkumpul: Rp
                                         {{number_format($item->transactions->sum('amount'))}}</p>
                                     <button wire:click="openModal({{ $item->id }})"
                                         class="w-full py-2.5 text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 rounded-xl hover:bg-pink-500 hover:text-white dark:hover:bg-pink-500 dark:hover:text-white transition-all shadow-sm ring-1 ring-inset ring-slate-100 dark:ring-white/5 hover:ring-0">
