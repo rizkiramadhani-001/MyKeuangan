@@ -19,6 +19,7 @@ class Kebutuhan extends Component
     public $categories = ['Personal'];
 
     public $newCategory = '';
+    public $showModal = false;
     public $prompt = '';
 
     #[Validate([
@@ -30,6 +31,8 @@ class Kebutuhan extends Component
         ['name' => '', 'price' => '']
     ];
 
+    public $editItems ;
+
     #[Validate(['attachments.*' => 'image|max:10240'])]
     public $attachments = [];
 
@@ -37,8 +40,10 @@ class Kebutuhan extends Component
 
     ];
 
-    // --- 2. Standard Actions ---
 
+    //Variable untuk Edit
+    public $nama_barang;
+    public $harga_barang;
 
 
 
@@ -75,9 +80,35 @@ class Kebutuhan extends Component
         $this->categories = array_values($this->categories);
     }
 
+
     public function addItem()
     {
         $this->items[] = ['name' => '', 'price' => ''];
+    }
+
+    public function edit($id)
+    {
+        $this->showModal = true;
+        $data = Barang::find($id);
+        $this->editItems = $data;
+        $this->nama_barang = $data->nama;
+        $this->harga_barang = $data->harga;
+
+
+    }
+
+
+    public function saveEdit($id)
+    {
+        $data = Barang::find($id);
+        $data->nama = $this->nama_barang;
+        $data->harga = $this->harga_barang;
+
+        if($data->save())
+        {
+            $this->showModal = false;
+        }
+
     }
 
     public function removeItem($index)
@@ -191,26 +222,19 @@ class Kebutuhan extends Component
         }, 0);
     }
 
-    // --- 5. Submit Handler ---
 
     public function dbSaveExpense()
     {
         // 1. Validate Input
         $this->validate();
 
-
-
-        // 2. Handle File Upload (Simple logic: take the first image if available)
-        // Since your DB 'img_url' is per item, but the form has one attachment list,
-        // we will use the first image for now, or a placeholder.
         $imagePath = 'placeholder.jpg';
         if (!empty($this->attachments)) {
             // Save the first file to 'public/expenses'
             $imagePath = $this->attachments[0]->store('expenses', 'public');
         }
 
-        // 3. Prepare Data for AI
-        // We only send names and prices to save tokens and reduce complexity
+
         $itemsPayload = array_map(fn($item) => [
             'nama' => $item['name'],
             'harga' => (int) $item['price']
@@ -218,7 +242,6 @@ class Kebutuhan extends Component
 
         $apiKey = env('GEMINI_API_KEY');
 
-        // 4. Construct AI Prompt
         $systemInstruction = "You are a financial logic engine. 
         Analyze the following list of items. For each item:
         1. Determine if it is a 'kebutuhan' (Need/Essential) or 'wishlist' (Want/Luxury).
@@ -230,8 +253,7 @@ class Kebutuhan extends Component
         - Return structure: [{'nama': '...', 'harga': 1000, 'tipe': '...', 'deskripsi': '...'}]
         ";
 
-        // 5. Call Gemini API
-        // 
+   
 
 
         $response = Http::withOptions([
@@ -262,7 +284,6 @@ class Kebutuhan extends Component
             $processedItems = json_decode($cleanJson, true);
         }
 
-        // Fallback: If AI fails, use original items and default to 'kebutuhan'
         if (empty($processedItems) || !is_array($processedItems)) {
             $processedItems = array_map(fn($i) => [
                 'nama' => $i['nama'],
@@ -275,22 +296,20 @@ class Kebutuhan extends Component
         
 
 
-        // 7. Save to Database
         foreach ($processedItems as $index=> $item) {
 
         $firstItemName = $this->items[$index]['name'] ?? 'budget';
         $imageUrl = $this->getUnsplashImage($firstItemName);
 
           if (!$imageUrl) {
-            // fallback if API fails
             $imageUrl = 'https://source.unsplash.com/random/400x400/?money,budget';
         }
             Barang::create([
-                'user_id' => auth()->user()->id, // Ensure user is logged in
+                'user_id' => auth()->user()->id, 
                 'nama' => $item['nama'],
                 'deskripsi' => $item['deskripsi'] ?? 'Item added via Kebutuhan App',
                 'img_url' => $imageUrl,
-                'tipe' => strtolower($item['tipe']), // Ensure enum match
+                'tipe' => strtolower($item['tipe']), 
                 'harga' => $item['harga'],
             ]);
         }
@@ -302,11 +321,22 @@ class Kebutuhan extends Component
         session()->flash('message', 'Items analyzed by AI and saved successfully!');
     }
 
-    // ... (Keep render and other methods) ...
 
+
+    public function getExpenses()
+    {
+            return Barang::orderBy('harga', 'desc')->where('user_id', auth()->user()->id)->get();
+    }
+
+
+    public function delete($id)
+    {
+        Barang::find($id)->delete();
+    }
 
     public function render()
     {
-        return view('livewire.kebutuhan');
+        $barangs = $this->getExpenses();
+        return view('livewire.kebutuhan', compact('barangs'));
     }
 }

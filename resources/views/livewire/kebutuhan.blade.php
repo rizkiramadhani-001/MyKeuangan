@@ -151,9 +151,9 @@
                             <div class="px-5 py-3 bg-slate-50 dark:bg-slate-950 border-b border-slate-100 dark:border-white/5 flex justify-between items-center">
                                 <h4 class="font-bold text-slate-700 dark:text-slate-200 text-sm flex items-center gap-2">
                                     @php
-                                        // Dynamic coloring support based on JSON return
-                                        $color = $group['color'] ?? 'gray';
-                                        $icon = $group['icon'] ?? 'circle';
+    // Dynamic coloring support based on JSON return
+    $color = $group['color'] ?? 'gray';
+    $icon = $group['icon'] ?? 'circle';
                                     @endphp
                                     <div class="p-1.5 rounded-lg bg-{{ $color }}-100 dark:bg-{{ $color }}-500/10 text-{{ $color }}-600 dark:text-{{ $color }}-400">
                                         <i class="fa-solid fa-{{ $icon }} text-xs"></i>
@@ -195,4 +195,105 @@
         </div>
 
     </div>
-</div>
+           <section id="table">
+                    <div class="mt-12 md:mt-16">
+
+                        <div class="flex flex-col md:flex-row md:items-end justify-between px-1 mb-6 gap-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-slate-900 dark:text-white">Barang</h2>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 font-medium">Recent activity history
+                                </p>
+                            </div>
+
+                            <div class="flex gap-2 self-start md:self-auto">
+                                <!-- <div class="flex p-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-xl">
+                                    <button class="px-4 py-1.5 text-xs font-bold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm">All</button>
+                                    <button class="px-4 py-1.5 text-xs font-bold rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">In</button>
+                                    <button class="px-4 py-1.5 text-xs font-bold rounded-lg text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Out</button>
+                                </div> -->
+                                <button class="h-[38px] w-[38px] flex items-center justify-center rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                    <i class="fa-solid fa-download text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl rounded-[2rem] shadow-sm border border-white/50 dark:border-white/5 overflow-hidden w-full">
+
+                            <div class="overflow-x-auto custom-scroll">
+                                <table class="w-full text-left border-collapse min-w-[600px]">
+                                    <thead class="bg-slate-50/50 dark:bg-slate-950/30 border-b border-slate-200/50 dark:border-white/5">
+                                        <tr>
+                                            <th class="py-4 px-6 text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 whitespace-nowrap">
+                                                Nama Barang</th>
+                                            <th class="py-4 px-6 text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 whitespace-nowrap">
+                                                Category</th>
+                                  
+                                            <th class="py-4 px-6 text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 text-right whitespace-nowrap">
+                                                Price</th>
+                                            <th class="py-4 px-6 text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 text-center whitespace-nowrap">
+                                                Status</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="divide-y divide-slate-100 dark:divide-white/5">
+                                        @foreach ($barangs as $barang)
+
+                                            <tr class="group hover:bg-white dark:hover:bg-purple-500/5 transition-colors duration-200 cursor-pointer">
+                                                <td class="py-4 px-6">
+                                                    <div class="flex items-center gap-4">
+                                                        <div
+                                                            class="h-10 w-10 shrink-0 rounded-2xl bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-500 group-hover:scale-110 transition-transform duration-300">
+                                                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                                                        </div>
+                                                        <div>
+                                                            <div class="text-sm font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                                                                {{ $barang->nama }}
+                                                            </div>
+                                                            <div class="text-[11px] text-slate-500 dark:text-slate-500 font-medium text-wrap">
+                                                                {{ $barang->deskripsi }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="py-4 px-6">
+                                                    <span
+                                                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 border border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                                                        <span
+                                                            class="w-1.5 h-1.5 rounded-full {{ ($barang->tipe == 'kebutuhan') ? 'bg-green-500' : 'bg-red-500' }}"></span>
+                                                        {{ $barang->tipe }}
+                                                    </span>
+                                                </td>
+
+                                                <td class="py-4 px-6 text-right whitespace-nowrap">
+                                                    <div class="text-sm font-bold text-slate-900 dark:text-white tabular-nums">
+                                                        Rp {{ number_format($barang->harga) }}</div>
+                                                </td>
+                                                <td class="py-4 px-6 text-center whitespace-nowrap">
+                                                    <div class="flex items-center justify-center gap-2">
+                                                        <button type="button" wire:click="edit({{ $barang->id }})"
+                                                            class="group flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:border-purple-200 hover:bg-purple-50 hover:text-purple-600 dark:hover:bg-purple-500/10 dark:hover:text-purple-300 dark:hover:border-purple-500/20 transition-all text-xs font-bold shadow-sm">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                            <span>Edit</span>
+                                                        </button>
+
+                                                        <button type="button" wire:click="delete({{ $barang->id }})"
+                                                            onclick="return confirm('Are You Sure')"
+                                                            class="h-[30px] w-[30px] flex items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800 text-slate-400 hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400 dark:hover:border-red-500/20 transition-all shadow-sm">
+                                                            <i class="fa-solid fa-trash-can text-xs"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+ 
+                        </div>
+                    </div>
+                </section>
+                
+         
+            </div>

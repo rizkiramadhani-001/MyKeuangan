@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Tabungan extends Model
 {
     protected $guarded = ['id'];
+
+    public function barang()
+    {
+        $this->belongsTo(Barang::class);
+    }
 }

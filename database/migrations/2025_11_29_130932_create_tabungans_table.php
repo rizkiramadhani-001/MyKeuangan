@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('barang_id')->references('id')->on('barangs')->cascadeOnDelete();
             $table->unsignedBigInteger('nominal');
+            $table->enum('sumber', ['internal', 'external'])->nullable();
             $table->timestamps();
         });
     }

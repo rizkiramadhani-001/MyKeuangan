@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
+            $table->id();            
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('barang_id')->references('id')->on('barangs')->cascadeOnDelete();
+            $table->bigInteger('amount');
             $table->timestamps();
         });
     }
