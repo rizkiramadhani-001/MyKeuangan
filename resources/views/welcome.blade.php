@@ -198,7 +198,7 @@
             <a href="#steps" class="text-sm font-medium hover:bg-primary-soft dark:hover:bg-slate-700/50 hover:text-primary dark:hover:text-primary-soft py-3 px-4 rounded-lg transition-colors"><i class="fa-solid fa-list-ol mr-3 w-5 text-center"></i> Alur</a>
             <a href="#simulator" class="text-sm font-medium hover:bg-primary-soft dark:hover:bg-slate-700/50 hover:text-primary dark:hover:text-primary-soft py-3 px-4 rounded-lg transition-colors"><i class="fa-solid fa-calculator mr-3 w-5 text-center"></i> Simulator</a>
             <div class="h-px bg-gray-100 dark:bg-slate-700 my-1"></div>
-            <a href="index.html" class="text-sm font-bold text-primary dark:text-primary-soft py-3 px-4"><i class="fa-solid fa-right-to-bracket mr-3 w-5 text-center"></i> Login</a>
+            <a href="/login" class="text-sm font-bold text-primary dark:text-primary-soft py-3 px-4"><i class="fa-solid fa-right-to-bracket mr-3 w-5 text-center"></i> Login</a>
         </div>
     </header>
 
@@ -222,7 +222,7 @@
                     </p>
 
                     <div class="flex flex-wrap gap-4 mb-10">
-                        <a href="index.html" class="group relative rounded-full px-8 py-3.5 bg-primary text-white font-semibold text-sm tracking-wide shadow-lg shadow-primary/30 hover:bg-primary-strong hover:-translate-y-1 hover:shadow-primary/50 transition-all duration-200 overflow-hidden">
+                        <a href="/login" class="group relative rounded-full px-8 py-3.5 bg-primary text-white font-semibold text-sm tracking-wide shadow-lg shadow-primary/30 hover:bg-primary-strong hover:-translate-y-1 hover:shadow-primary/50 transition-all duration-200 overflow-hidden">
                             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                             <span class="relative"><i class="fa-solid fa-rocket mr-2"></i> Mulai Sekarang</span>
                         </a>
