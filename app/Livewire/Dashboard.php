@@ -56,7 +56,7 @@ class Dashboard extends Component
         Transaction::create([
             'user_id' => auth()->user()->id,
             'barang_id' => $id,
-            'amount' => $this->amount || $this->amountSudden
+            'amount' => $this->amount
         ]);
 
 

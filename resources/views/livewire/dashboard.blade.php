@@ -528,19 +528,7 @@
                                                 <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                            <div class="mt-2">
-                                                <label
-                                                    class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide">
-                                                    Masukan Uang (Bukan Dari Uang utama Contoh: Uang Kaget)
-                                                </label>
-
-                                                <input type="number" wire:model="amountSudden"
-                                                    class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all resize-none">
-
-                                                @error('nama_barang')
-                                                <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
-                                                @enderror
-                                            </div>
+                                     
 
 
                                         </div>
