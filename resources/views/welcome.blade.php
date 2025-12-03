@@ -210,10 +210,7 @@
             <div class="max-w-[1100px] mx-auto px-6 grid grid-cols-1 md:grid-cols-[1.5fr_1.3fr] gap-12 items-center relative z-10">
                 
                 <div class="reveal">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-soft dark:bg-slate-800 border border-primary/20 text-primary-strong dark:text-primary-soft text-xs font-bold mb-6">
-                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                        V1.0 is Live Now
-                    </div>
+           
 
                     <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-gray-900 dark:text-white mb-6 leading-[1.15]">
                         Atur Keuangan, <br>
@@ -488,7 +485,6 @@
 
             <div class="max-w-[1100px] mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
                 <span>&copy; 2025 MyUang. Crafted with <i class="fa-solid fa-heart text-pink-500 animate-pulse mx-1"></i> & Purple Passion.</span>
-                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700">v1.0.0 Alpha</span>
             </div>
         </footer>
     </main>
