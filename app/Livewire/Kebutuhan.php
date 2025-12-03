@@ -2,12 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Exports\BarangExport;
 use App\Models\Barang;
+use Carbon\Carbon;
 use Illuminate\Container\Attributes\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Kebutuhan extends Component
 {
@@ -332,6 +335,24 @@ class Kebutuhan extends Component
     public function delete($id)
     {
         Barang::find($id)->delete();
+    }
+
+    public function export()
+    {
+        $filename = 'barang-' . Carbon::now()->format('Y-m-d_H-i-s') . '.xlsx';
+
+        
+        return Excel::download(new BarangExport, $filename);
+
+        
+    }
+    
+    public function exportPdf()
+    {
+        $filename = 'barang-' . Carbon::now()->format('Y-m-d_H-i-s') . '.pdf';
+
+        return Excel::download(new BarangExport, $filename, \Maatwebsite\Excel\Excel::DOMPDF);
+
     }
 
     public function render()

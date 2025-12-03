@@ -356,7 +356,7 @@
                             </div>
 
                             <div class="flex gap-2 self-start md:self-auto">
-                                <button
+                                <button wire:click="export"
                                     class="h-[38px] w-[38px] flex items-center justify-center rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                                     <i class="fa-solid fa-download text-xs"></i>
                                 </button>
