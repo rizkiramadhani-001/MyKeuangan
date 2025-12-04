@@ -115,7 +115,7 @@
                                 </div>
                                 <span
                                     class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wide border border-emerald-100 dark:border-emerald-500/20">
-                                    <i class="fa-solid fa-arrow-trend-up"></i> +12.5%
+                                    <i class="fa-solid fa-arrow-trend-up"></i> Money
                                 </span>
                             </div>
 

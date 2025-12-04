@@ -330,15 +330,8 @@
             </div>
         </section>
       <section>
-                    <div>
-    <button 
-        type="button"
-        wire:click="$set('showModal', true)"
-        class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-purple-500/30 flex items-center gap-2"
-    >
-        <i class="fa-solid fa-pen-nib"></i>
-        <span>New Post</span>
-    </button>
+<div>
+
 
     <div 
         class="fixed inset-0 z-50 overflow-y-auto" 

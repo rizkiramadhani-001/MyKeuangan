@@ -86,10 +86,7 @@ class Dashboard extends Component
         ->whereHas('barang', function ($q) {
             $q->where('tipe', 'wishlist');
         });
-        $tsc2 = Transaction::where('user_id', auth()->user()->id)
-        ->whereHas('barang', function ($q) {
-            $q->where('tipe', 'wishlist');
-        });
+        $tsc2 = Transaction::where('user_id', auth()->user()->id)->get();
 
         $sumf = $tsc->sum('amount');
         $sumf2 = $tsc2->sum('amount');
