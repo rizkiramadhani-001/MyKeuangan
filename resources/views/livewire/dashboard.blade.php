@@ -134,7 +134,7 @@
                                 Dana Asli Setelah Transaksi</p>
                             <h3
                                 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight tabular-nums truncate">
-                                {{ number_format($data->dana - $sumf) }}
+                                {{ number_format($data->dana - $sumf2) }}
                             </h3>
                             <p class="text-xs text-slate-400 dark:text-slate-500 mt-2 font-medium">Safe to spend this
                                 month</p>
